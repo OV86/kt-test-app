@@ -1,0 +1,32 @@
+@import './base/settings';
+@import './base/base';
+
+.app-title {
+  width: 600px;
+  margin: 60px auto 60px auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-details,
+.edit-property {
+  width: 600px;
+  height: 400px;
+  margin: 0 auto 0 auto;
+}
+
+.view-details h3 {
+  margin: 30px auto 30px auto;
+}
+
+.propery-type > :first-child,
+.size > :first-child,
+.period > :first-child { 
+  font-weight: bold;
+}
+
+
+
