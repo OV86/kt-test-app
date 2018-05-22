@@ -1,14 +1,29 @@
 import React from 'react';
 import Input from '@material-ui/core/Input';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { Add, Remove } from '@material-ui/icons';
 
 const EditProperty = (props) => {
+  const opacity = keyframes`
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  `;
+
   const EditDetails = styled.div`
     display: flex;
     justify-content: space-between;
+    animation-name: ${opacity};
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
   `;
 
   const HeaderDiv = styled.div`

@@ -15,6 +15,8 @@ class PropertyDetails extends React.Component {
     fadeInWidthAt100: '0',
     fadeInMarginTopAt100: '0',
     fadeInMarginLeftAt100: '0',
+    opacity0: '0',
+    opacity100: '0',
   };
 
   onClick = () => {
@@ -29,6 +31,8 @@ class PropertyDetails extends React.Component {
     const fadeInMarginLeftAt0 = this.state.editMode ? '0' : '100%';
     const fadeInMarginTopAt100 = this.state.editMode ? '300px' : '0';
     const fadeInMarginLeftAt100 = this.state.editMode ? '100%' : '0';
+    const opacity0 = this.state.editMode ? '1' : '0';
+    const opacity100 = this.state.editMode ? '0' : '1';
 
     setTimeout((() => {
       this.setState(() => ({
@@ -43,6 +47,8 @@ class PropertyDetails extends React.Component {
         fadeInMarginLeftAt0,
         fadeInMarginTopAt100,
         fadeInMarginLeftAt100,
+        opacity0,
+        opacity100,
         editMode: !this.state.editMode,
       }));
     }), 0);

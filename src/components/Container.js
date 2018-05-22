@@ -36,12 +36,6 @@ const Container = (props) => {
 
   const Property = styled.div`
     border-radius: 5px;
-    animation-name: 'none';
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
   `;
 
   const View = styled.div`
@@ -54,7 +48,7 @@ const Container = (props) => {
     background: #e8e9ed;
     height: 200px;
     animation-name: ${changeSize};
-    animation-duration: 1s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-direction: normal;
     animation-fill-mode: forwards;
@@ -69,7 +63,7 @@ const Container = (props) => {
     height: 0;
     z-index: 10;
     animation-name: ${property};
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-direction: normal;
     animation-fill-mode: forwards;
