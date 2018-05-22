@@ -2,9 +2,7 @@ import React from 'react';
 import PropertyDetails from './PropertyDetails';
 
 const Dashboard = () => (
-  <div>
-    <PropertyDetails />
-  </div>
+  <PropertyDetails />
 );
 
 export default Dashboard;

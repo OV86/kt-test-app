@@ -44,6 +44,7 @@
     "react/no-did-mount-set-state": "off",
     "no-param-reassign": "off",
     "no-trailing-spaces": "off",
+    "template-tag-spacing": "off",
     "function-paren-newline": "off",
     "import/first": "off",
     "jsx-a11y/anchor-is-valid": [
