@@ -8,10 +8,10 @@ import { Add, Remove } from '@material-ui/icons';
 const EditProperty = (props) => {
   const opacity = keyframes`
     0% {
-      opacity: 0;
+      opacity: ${props.opacity0};
     }
     100% {
-      opacity: 1;
+      opacity: ${props.opacity100};
     }
   `;
 
@@ -19,9 +19,9 @@ const EditProperty = (props) => {
     display: flex;
     justify-content: space-between;
     animation-name: ${opacity};
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
-    animation-direction: normal;
+    animation-direction: 'normal';
     animation-fill-mode: forwards;
     animation-play-state: running;
   `;
@@ -29,15 +29,19 @@ const EditProperty = (props) => {
   const HeaderDiv = styled.div`
     font-weight: bold;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.4rem;
     text-align: center;
+    color: #e8e9ed;
   `;
 
-  const PropInput = styled(Input) `
+  const PropInput = styled(Input).attrs({
+    className: 'PropInput',
+  }) `
     margin: 10px;
     font-size: 14px !important;
     width: 100px;
+    background: #e8e9ed;
   `;
 
   const AddRemoveButton = styled(Button) `

@@ -5,6 +5,7 @@ import ViewProperty from './ViewProperty';
 import StyledButton from './StyledButton';
 
 const Container = (props) => {
+  // keyframes
   const changeSize = keyframes`
     0% {
       height: ${props.size0};
@@ -14,35 +15,41 @@ const Container = (props) => {
     }
   `;
 
-  const property = keyframes`
+  const backgroundTransition = keyframes`
     0% {
-      height: ${props.fadeInHeightAt0};
-      width: ${props.fadeInWidthAt0};
-      margin-top: ${props.fadeInMarginTopAt0};
-      margin-left: ${props.fadeInMarginLeftAt0};
+      transform: scale(${props.transition0});
     }
     100% {
-      height: ${props.fadeInHeightAt100};
-      width: ${props.fadeInWidthAt100};
-      margin-top: ${props.fadeInMarginTopAt100};
-      margin-left: ${props.fadeInMarginLeftAt100};
-    }
+      transform: scale(${props.transition100});
+  }
   `;
 
-  const ContainerDiv = styled.div`
-    width: 70%;
+  // components
+  const ContentContainer = styled.div.attrs({
+    className: 'ContentContainer',
+  }) `
+    max-width: 800px;
+    height: 350px;
     margin: 0 auto 0 auto;
+    padding: 0 30px 0 30px;
   `;
 
-  const Property = styled.div`
-    border-radius: 5px;
+  const ContentLayout = styled.div.attrs({
+    className: 'ContentLayout',
+  }) `
+    width: 100%;
+    margin: 0 auto 0 auto;
+    background: #4b4e51;
+    height: 100%;
+    min-height: 100vh;
   `;
 
-  const View = styled.div`
-    padding: 20px 70px 0 70px;
-  `;
-
-  const PropertyRow = styled.div`
+  const PropertyRow = styled.div.attrs({
+    className: 'PropertyRow',
+  }) `
+    position: relative;
+    z-index: 4;
+    top: 30px;
     border-radius: 5px;
     width: 100%;
     background: #e8e9ed;
@@ -55,51 +62,103 @@ const Container = (props) => {
     animation-play-state: running;
   `;
 
-  const FadeInDiv = styled.div`
+  const Header = styled.h3.attrs({
+    className: 'Header',
+  }) `
+    margin: 20px;
+    z-index: 4;
+    text-transform: uppercase;
+    position: absolute;
+  `;
+
+  const PropertyWrapper = styled.div.attrs({
+    className: 'PropertyWrapper',
+  }) `
     border-radius: 5px;
-    margin: 0 auto 0 auto;
-    width: 0;
-    background: #25a398;
-    height: 0;
-    z-index: 10;
-    animation-name: ${property};
-    animation-duration: 0.3s;
+    padding-top: 15px;
+    position: absolute;
+    top: 70px;
+    z-index: 3;
+    width: 100%;
+    height: 65%;
+  `;
+
+  const ViewEditContainer = styled.div.attrs({
+    className: 'ViewContainer',
+  }) `
+    margin: 0 20px 0 20px;
+    position: absolute;
+    z-index: 4;
+    width: 90%;
+  `;
+
+  const TransitionContainer = styled.div.attrs({
+    className: 'TransitionContainer',
+  }) `
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    overflow: hidden;
+  `;
+
+  const EditTransition = styled.div.attrs({
+    className: 'EditTransition',
+  }) `
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+    z-index: -99;
+    background-color: #25a398;
+    animation-name: ${backgroundTransition};
+    animation-duration: 0.8s;
+    animation-delay: 0s;
     animation-iteration-count: 1;
-    animation-direction: normal;
     animation-fill-mode: forwards;
     animation-play-state: running;
   `;
 
-  const Header = styled.h3`
-    padding: 30px;
-    text-transform: uppercase;
-  `;
-
   return (
-    <ContainerDiv>
-      <PropertyRow>
-        <Property>
-          <Header>Property</Header>
-          <View>
-            {
-              props.editMode ?
-                (
-                  <EditProperty />
-                ) :
-                (
-                  <ViewProperty />
-                )
-            }
-          </View>
-        </Property>
-      </PropertyRow>
-      <StyledButton
-        rotation={props.rotation}
-        onClick={props.onClick}
-        editMode={props.editMode}
-      />
-      <FadeInDiv />
-    </ContainerDiv>
+    <ContentLayout>
+      <ContentContainer>
+        <PropertyRow>
+          {props.editMode ? '' : <Header>Property</Header>}
+          <PropertyWrapper>
+            <ViewEditContainer>
+              {
+                props.editMode ?
+                  (
+                    <EditProperty
+                      opacity0={props.opacity0}
+                      opacity100={props.opacity100}
+                    />
+                  ) :
+                  (
+                    <ViewProperty
+                      opacity0={props.opacity0}
+                      opacity100={props.opacity100}
+                    />
+                  )
+              }
+            </ViewEditContainer>
+          </PropertyWrapper>
+          <TransitionContainer>
+            <EditTransition />
+          </TransitionContainer>
+          <StyledButton
+            rotation={props.rotation}
+            onClick={props.onClick}
+            editMode={props.editMode}
+          />
+        </PropertyRow>
+      </ContentContainer>
+    </ContentLayout>
   );
 };
 

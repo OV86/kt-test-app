@@ -5,7 +5,6 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   font-size: $m-size;
-  background: #4b4e51;
 }
 
 button {
@@ -14,6 +13,11 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+.PropInput > input {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 

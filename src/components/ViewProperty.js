@@ -1,13 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-const ViewProperty = (props) => {
-  const ViewDetails = styled.div`
-    display: flex;
-    justify-content: space-between;
+const View = (props) => {
+  const opacity = keyframes`
+    0% {
+      opacity: ${props.opacity0};
+    }
+    100% {
+      opacity: ${props.opacity100};
+    }
   `;
 
-  const HeaderDiv = styled.div`
+  const ViewProperty = styled.div.attrs({
+    className: 'ViewProperty',
+  }) `
+    display: flex;
+    justify-content: space-between;
+    animation-name: ${opacity};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-direction: 'normal';
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  `;
+
+  const HeaderDiv = styled.div.attrs({
+    className: 'Header',
+  }) `
     font-weight: bold;
     text-transform: uppercase;
     font-weight: 700;
@@ -22,7 +41,7 @@ const ViewProperty = (props) => {
   `;
 
   return (
-    <ViewDetails>
+    <ViewProperty>
       <div>
         <HeaderDiv>Property type</HeaderDiv>
         <BoldDiv>Commercial</BoldDiv>
@@ -35,9 +54,9 @@ const ViewProperty = (props) => {
         <HeaderDiv>Lease period</HeaderDiv>
         <BoldDiv>10 years</BoldDiv>
       </div>
-    </ViewDetails>
+    </ViewProperty>
   );
 };
 
-export default ViewProperty;
+export default View;
 

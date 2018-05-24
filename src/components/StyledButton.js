@@ -5,12 +5,6 @@ import { Edit, Close } from '@material-ui/icons';
 import styled, { keyframes } from 'styled-components';
 
 const StyledButton = (props) => {
-  const ButtonContainer = styled.div`
-    position: relative;
-    float: right;
-    margin: -3% -3% 0 0;
-  `;
-
   const rollButton = keyframes`
     0% {
       transform: rotate(0);
@@ -20,8 +14,11 @@ const StyledButton = (props) => {
   }
   `;
 
-  const EditButton = styled(Button) `
+  const EditButton = styled(Button).attrs({
+    className: 'EditButton',
+  }) `
     animation-name: ${rollButton};
+    z-index: 4 !important;
     animation-duration: 0.3s;
     animation-timing-function: ease;
     animation-delay: 0s;
@@ -33,6 +30,15 @@ const StyledButton = (props) => {
 
   const EditCloseIcon = styled(Icon) `
     color: white;
+  `;
+
+  const ButtonContainer = styled.div.attrs({
+    className: 'ButtonContainer',
+  }) `
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    z-index: 4;
   `;
 
   return (
